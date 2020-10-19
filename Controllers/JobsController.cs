@@ -65,7 +65,7 @@ namespace Jobbr.Controllers
                 return BadRequest(e.Message);
             }
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public ActionResult<Job> Delete(int id)
         {
             try

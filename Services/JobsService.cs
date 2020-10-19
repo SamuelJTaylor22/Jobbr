@@ -43,9 +43,11 @@ namespace Jobbr.Services
       return _repo.Edit(updated);
     }
 
-    internal Job Delete(int id)
+    internal string Delete(int id)
     {
-      throw new NotImplementedException();
+    var data = GetById(id);
+    _repo.Delete(id);
+    return "delorted";
     }
   }
 }
