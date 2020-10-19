@@ -31,7 +31,7 @@ namespace Jobbr.Services
 
     internal object Create(Job newJob)
     {
-      throw new NotImplementedException();
+      return _repo.Create(newJob);
     }
 
     internal object Edit(Job updated)

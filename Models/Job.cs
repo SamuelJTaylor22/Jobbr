@@ -10,6 +10,5 @@ namespace Jobbr.Models
         public string Description { get; set; }
         [Required]
         public string Contact { get; set; }
-        public string TimeEstimate { get; set; }
     }
 }
