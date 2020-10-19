@@ -25,12 +25,25 @@ namespace Jobbr.Repositories
       return _db.QueryFirstOrDefault<Job>(sql, new {id});
     }
 
-    internal object Create(Job newJob)
+    internal Job Create(Job newJob)
     {
       string sql = @"INSERT INTO jobs (location, description, contact) VALUES (@Location, @Description, @Contact); SELECT LAST_INSERT_ID();";
       int id = _db.ExecuteScalar<int>(sql, newJob);
       newJob.Id = id;
       return newJob;
+    }
+
+    internal Job Edit(Job updated)
+    {
+      string sql = @"
+      UPDATE jobs
+      SET
+        location = @Location,
+        description = @Description,
+        contact = @Contact
+      WHERE id = @Id;";
+      _db.Execute(sql, updated);
+      return updated;
     }
   }
 }

@@ -52,12 +52,25 @@ namespace Jobbr.Controllers
                 return BadRequest(e.Message);
             }
         }
-        [HttpPut]
+        [HttpPut("{id}")]
         public ActionResult<Job> Edit([FromBody] Job updated, int id)
         {
             try
             {
+                updated.Id = id;
                 return Ok(_service.Edit(updated));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+        [HttpDelete]
+        public ActionResult<Job> Delete(int id)
+        {
+            try
+            {
+                return Ok(_service.Delete(id));
             }
             catch (Exception e)
             {

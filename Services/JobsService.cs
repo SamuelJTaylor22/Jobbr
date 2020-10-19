@@ -29,12 +29,21 @@ namespace Jobbr.Services
       return data;
     }
 
-    internal object Create(Job newJob)
+    internal Job Create(Job newJob)
     {
       return _repo.Create(newJob);
     }
 
-    internal object Edit(Job updated)
+    internal Job Edit(Job updated)
+    {
+      var data = GetById(updated.Id);
+      updated.Description = updated.Description != null ? updated.Description : data.Description;
+      updated.Contact = updated.Contact != null && updated.Contact.Length > 2 ? updated.Contact : data.Contact;
+
+      return _repo.Edit(updated);
+    }
+
+    internal Job Delete(int id)
     {
       throw new NotImplementedException();
     }
