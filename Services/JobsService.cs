@@ -19,9 +19,14 @@ namespace Jobbr.Services
       return _repo.GetAll();
     }
 
-    internal object GetById(int id)
+    internal Job GetById(int id)
     {
-      throw new NotImplementedException();
+      var data = _repo.GetById(id);
+      if (data == null)
+      {
+          throw new Exception("Invalid Id");
+      }
+      return data;
     }
 
     internal object Create(Job newJob)
