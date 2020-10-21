@@ -1,11 +1,13 @@
 using System;
 using Jobbr.Models;
 using Jobbr.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Jobbr.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/[controller]")]
     public class JobsController : ControllerBase
     {
@@ -15,7 +17,7 @@ namespace Jobbr.Controllers
         {
             _service = js;
         }
-
+        [Authorize]
         [HttpGet]
         public ActionResult<Job> Get()
         {
